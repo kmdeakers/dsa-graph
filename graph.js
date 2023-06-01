@@ -88,22 +88,16 @@ class Graph {
 
   /** find the distance of the shortest path from the start vertex to the end vertex */
   distanceOfShortestPath(start, end) {
-    const queue = [start];
-    const seen = new Set();
-    const dist = 0;
+    let queue = [start];
+    const seen = new Set([start]);
+    let dist = 0;
 
     while (queue.length) {
-
-      while (queue.length) {
-        const curr = queue.shift();
-        const tmp = [];
-
+      const tmp = [];
+      for (const curr of queue) {
         if (curr === end) {
           return dist;
-        } else {
-          dist += 1;
         }
-
         for (const n of curr.adjacent) {
           if (!seen.has(n)) {
             seen.add(n);
@@ -111,9 +105,12 @@ class Graph {
           }
         }
       }
+      queue = tmp;
+      dist += 1;
     }
-
+    return undefined
   }
+
 }
 
 module.exports = { Graph, Node };
