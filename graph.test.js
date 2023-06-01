@@ -309,3 +309,4 @@ describe("distanceOfShortestPath", function () {
     expect(graph.distanceOfShortestPath(t, "rogue node")).toBe(undefined);
   });
 });
+
